@@ -1,0 +1,18 @@
+-- DROP TABLE IF EXISTS users CASCADE;
+-- CREATE TABLE users (
+--   ID SERIAL PRIMARY KEY  NOT NULL,
+--   first_name VARCHAR(30)  NOT NULL,
+--   last_name VARCHAR(30)  NOT NULL,
+--   email VARCHAR(30)  NOT NULL,
+--   password VARCHAR(250)  NOT NULL,
+--   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+--   age BIGINT,
+--   weight BIGINT,
+--   height BIGINT,
+--   location VARCHAR(50),
+--   bio TEXT,
+--   image_url VARCHAR(500) 
+-- );
+
+-- INSERT INTO users (first_name,last_name, email,password)
+--   VALUES ('Jerry','Jones', 'jerry@example.com','test123'), ('Sam','Diaz', 'sam@example.com','test123');
