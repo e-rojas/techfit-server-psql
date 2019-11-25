@@ -16,6 +16,7 @@ app.get("/", (request, response) => {
 app.get("/api/users", db.getUsers);
 app.get("/api/drinks", dbDrinks.getDrinks);
 app.get("/api/drinks-tracking", dbDrinks.getDrinksTracking);
+app.get("/api/drink-info/", dbDrinks.getDrinkInfo)
 
 //POST
 app.post("/api/users", db.addUser);

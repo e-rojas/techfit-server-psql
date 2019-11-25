@@ -5,12 +5,12 @@ const { pool } = require("./config");
 var token = jwt.sign({ foo: "bar" }, "shhhhh");
 
 //GET DRINKS
-const getDrinks = (request, response) => {
+const getDrinks = (req, res) => {
   pool.query(
     `SELECT * FROM drinks`
   )
   .then((data) => {
-    response
+    res
       .status(200)
       .json({message: 'success', ...data.rows});
   })
@@ -20,12 +20,12 @@ const getDrinks = (request, response) => {
 };
 
 //GET DRINKS TRACKING
-const getDrinksTracking = (request, response) => {
+const getDrinksTracking = (req, res) => {
   pool.query(
     `SELECT * FROM drinks_tracking`
   )
   .then((data) => {
-    response
+    res
       .status(200)  
       .json({message: 'success', ...data.rows});
   })
@@ -34,7 +34,22 @@ const getDrinksTracking = (request, response) => {
   });
 };
 
+const getDrinkInfo = (req, res) => {
+  pool.query(
+    `SELECT * FROM drink_info WHERE name=$1`, [req.query.name]
+  )
+  .then((data) => {
+    res
+      .status(200)
+      .json({message: 'success', ...data.rows})
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+};
+
 module.exports = {
   getDrinks,
-  getDrinksTracking
+  getDrinksTracking,
+  getDrinkInfo
 }
