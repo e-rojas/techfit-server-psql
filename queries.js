@@ -64,7 +64,7 @@ const loginUser = (request, response) => {
         // console.log(result.rows[0].password)
         bcrypt.compare(password, result.rows[0].password, (err, match) => {
           if (match) {
-            var token = jwt.sign({ foo: "bar" }, process.env.SECRET);
+            const token = jwt.sign({ foo: "bar" }, process.env.SECRET);
             response.status(200).json({
               message: "You are logged in!!",
               token: token
