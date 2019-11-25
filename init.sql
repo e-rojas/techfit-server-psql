@@ -117,10 +117,10 @@ INSERT INTO drinks_tracking (user_id, day)
   VALUES (1, '01/01/2019');
 
 INSERT INTO drinks (count, drinks_tracking_id)
-  VALUES (14, 1);
+  VALUES (14, 1), (5, 1), (6, 1);
 
 INSERT INTO drink_info (name, calories, drink_id)
-  VALUES ('soda', 160, 1);
+  VALUES ('soda', 160, 1), ('coffee', 5, 2), ('water', 0, 3) ;
 
 
 
