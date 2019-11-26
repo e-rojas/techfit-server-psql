@@ -20,9 +20,10 @@ app.get("/api/drink-info/", dbDrinks.getDrinkInfo)
 
 //POST
 app.post("/api/users", db.addUser);
-app.post('/api/login', db.loginUser);
-
-// START SERVER
+app.post('/api/login', db.loginUser)
+app.get('/users/:id', db.getUserById)
+app.put('/users/:id', db.updateUser)
+// Start server
 app.listen(process.env.PORT || 3002, () => {
   console.log(`Server listening on port:3002`);
 });
