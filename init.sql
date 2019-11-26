@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS food_categories CASCADE;
 DROP TABLE IF EXISTS drinks_tracking CASCADE;
 DROP TABLE IF EXISTS drinks CASCADE;
 DROP TABLE IF EXISTS drink_info CASCADE;
-
+DROP TABLE IF EXISTS calendar CASCADE;
 
 
 CREATE TABLE users (
@@ -17,9 +17,9 @@ CREATE TABLE users (
   email VARCHAR(30)  NOT NULL,
   password VARCHAR(250)  NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  age BIGINT,
-  weight BIGINT,
-  height BIGINT,
+  age INT,
+  weight INT,
+  height INT,
   Location VARCHAR(50),
   bio VARCHAR(250),
   image_url TEXT 
@@ -30,8 +30,8 @@ CREATE TABLE recipes (
   id SERIAL PRIMARY KEY NOT NULL,
   recipe_title VARCHAR(250) NOT NULL,
   recipe_description VARCHAR(500) NOT NULL,
-  prep_time BIGINT,
-  cook_time BIGINT,
+  prep_time INT,
+  cook_time INT,
   ingredients VARCHAR(250) NOT NULL,
   photo_url TEXT 
 );
@@ -50,47 +50,38 @@ CREATE TABLE workouts (
 
 CREATE TABLE user_workouts (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
-  workout_id BIGINT REFERENCES workouts(id) ON DELETE CASCADE
+  user_id INT REFERENCES users(id) ON DELETE CASCADE,
+  workout_id INT REFERENCES workouts(id) ON DELETE CASCADE
 );
 
 
 CREATE TABLE user_recipes (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
-  recipe_id BIGINT REFERENCES recipes(id) ON DELETE CASCADE
+  user_id INT REFERENCES users(id) ON DELETE CASCADE,
+  recipe_id INT REFERENCES recipes(id) ON DELETE CASCADE
 );
 
 
 CREATE TABLE food_categories (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(250) NOT NULL,
-  recipe_id BIGINT REFERENCES recipes(id) ON DELETE CASCADE
+  recipe_id INT REFERENCES recipes(id) ON DELETE CASCADE
 );
 
+CREATE TABLE calendar (
+  id SERIAL PRIMARY KEY NOT NULL,
+  date DATE NOT NULL DEFAULT CURRENT_DATE
+);
 
 CREATE TABLE drinks_tracking (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
-  day DATE NOT NULL
+  user_id INT REFERENCES users(id) ON DELETE CASCADE,
+  date_id INT REFERENCES calendar(id) ON DELETE CASCADE,
+  water_count INT DEFAULT 0,
+  coffee_count INT DEFAULT 0,
+  soda_count INT DEFAULT 0,
+  other_count INT DEFAULT 0
 );
-
-
-CREATE TABLE drinks (
-  id SERIAL PRIMARY KEY NOT NULL,
-  count BIGINT NOT NULL DEFAULT 0,
-  drinks_tracking_id BIGINT REFERENCES drinks_tracking(id) ON DELETE CASCADE
-);
-
-
-CREATE TABLE drink_info (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(100) NOT NULL,
-  calories BIGINT,
-  drink_id BIGINT REFERENCES drinks(id) ON DELETE CASCADE
-);
-
-
 
 
 
@@ -113,14 +104,10 @@ INSERT INTO user_recipes (user_id, recipe_id)
 INSERT INTO food_categories (name, recipe_id)
   VALUES ('sandwich', 1);
 
-INSERT INTO drinks_tracking (user_id, day)
-  VALUES (1, '01/01/2019');
-
-INSERT INTO drinks (count, drinks_tracking_id)
-  VALUES (14, 1), (5, 1), (6, 1);
-
-INSERT INTO drink_info (name, calories, drink_id)
-  VALUES ('soda', 160, 1), ('coffee', 5, 2), ('water', 0, 3) ;
-
+INSERT INTO calendar (date)
+  VALUES ('2019-11-25'), ('2019-11-24');
+  
+INSERT INTO drinks_tracking (user_id, date_id, water_count, coffee_count, soda_count)
+  VALUES (1, 1, 3, 6, 2), (1, 2,  3,  5, 1);
 
 
