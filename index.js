@@ -23,10 +23,9 @@ app.post("/api/drinks-tracking", (req, res) => {
 
 app.get('/api/user-info',db.getUserInfo)
 app.get("/api/users", db.getUsers);
-app.get("/api/drinks", dbDrinks.getDrinks);
-app.get("/api/drinks-tracking", dbDrinks.getDrinksTracking);
-app.get("/api/drink-info/", dbDrinks.getDrinkInfo)
-
+// app.get("/api/drinks", dbDrinks.getDrinks);
+// app.get("/api/drinks-tracking", dbDrinks.getDrinksTracking);
+// app.get("/api/drink-info/", dbDrinks.getDrinkInfo)
 
 //USERS
 app.get("/api/users", db.getUsers);

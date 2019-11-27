@@ -29,11 +29,11 @@ const getUserById = (request, response) => {
 //update user
 const updateUser = (request, response) => {
   const id = parseInt(request.params.id);
-  const { age, bio, height, image_url, location, weight } = request.body;
+  const {first_name,last_name,email,password, age, bio, height, image_url, location, weight } = request.body;
 
   pool.query(
-    "UPDATE users SET  age = $1, bio = $2, height = $3, image_url = $4, location = $5, weight = $6 WHERE id = $7",
-    [age, bio, height, image_url, location, weight, id],
+    "UPDATE users SET first_name = $1, last_name = $2, email = $3, password = $4, age = $5, bio = $6, height = $7, image_url = $8, location = $9, weight = $10 WHERE id = $11",
+    [first_name,last_name,email,password, age, bio, height, image_url, location, weight, id],
     (error, results) => {
       if (error) {
         throw error;
@@ -60,8 +60,9 @@ const addUser = (request, response) => {
           } else {
             request.body.password = encrypted;
             const { first_name, last_name, email, password } = request.body;
+            //problem with the tome jwt on first time signing in 
             const token = jwt.sign(
-              { userID: result.rows[0].id },
+              { userID: 1 },
               process.env.SECRET
             );
             // console.log(request.body)
