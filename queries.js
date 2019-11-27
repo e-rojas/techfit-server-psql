@@ -60,7 +60,7 @@ const addUser = (request, response) => {
           } else {
             request.body.password = encrypted;
             const { first_name, last_name, email, password } = request.body;
-            
+            //problem with the tome jwt on first time signing in 
             const token = jwt.sign(
               { userID: 1 },
               process.env.SECRET
