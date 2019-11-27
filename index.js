@@ -13,6 +13,7 @@ app.use(cors());
 app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
+app.get('/api/user-info',db.getUserInfo)
 app.get("/api/users", db.getUsers);
 app.get("/api/drinks", dbDrinks.getDrinks);
 app.get("/api/drinks-tracking", dbDrinks.getDrinksTracking);
@@ -21,7 +22,7 @@ app.get("/api/drink-info/", dbDrinks.getDrinkInfo)
 //POST
 app.post("/api/users", db.addUser);
 app.post('/api/login', db.loginUser)
-app.get('/users/:id', db.getUserById)
+app.get('api/users/:id', db.getUserById)
 app.put('/users/:id', db.updateUser)
 // Start server
 app.listen(process.env.PORT || 3002, () => {
