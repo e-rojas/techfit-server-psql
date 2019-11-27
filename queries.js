@@ -130,7 +130,7 @@ const getUserInfo = (req, res) => {
   console.log(payload);
   // Make a query in the user db to retrieve that user
   console.log(payload.userID);
-  // send back the user info to the client
+  // send back the user info to the client //quick update 
   pool.query(
     "SELECT * FROM users WHERE id = $1",
     [payload.userID],
@@ -142,7 +142,7 @@ const getUserInfo = (req, res) => {
     }
   );
 };
-
+//comment in this area.
 module.exports = {
   getUserInfo,
   getUsers,

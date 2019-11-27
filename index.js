@@ -34,7 +34,8 @@ app.post("/api/users", db.addUser);
 app.post('/api/login', db.loginUser)
 app.get('api/users/:id', db.getUserById)
 app.put('/users/:id', db.updateUser)
-// Start server
+
+//START SERVER
 app.listen(process.env.PORT || 3002, () => {
   console.log(`Server listening on port:3002`);
 });

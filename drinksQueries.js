@@ -26,6 +26,7 @@ const getDrinksTracking = (req, res) => {
 
 //PUT NEW DATA IN THE COUNTS
 const putDrinkCounts = (req, res) => {
+
   console.log('changed drink count!')
   res.status(200);
   //destructure necessary params from req.param
@@ -37,6 +38,7 @@ const putDrinkCounts = (req, res) => {
   //   $1
   // `, [1]) 
   // res.json({message: 'drink count changed!'})
+
 }
 
 module.exports = {
